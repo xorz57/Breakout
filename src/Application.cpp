@@ -27,8 +27,8 @@ void Application::run() {
         std::exit(EXIT_FAILURE);
     }
 
-    respawnWalls();
     respawnGoal();
+    respawnWalls();
     respawnBricks();
     respawnBalls();
     respawnPaddles();
@@ -156,8 +156,8 @@ void Application::update([[maybe_unused]] float deltaTime) {
         }
     } else {
         mGameOver = !mGameOver;
-        respawnWalls();
         respawnGoal();
+        respawnWalls();
         respawnBricks();
         respawnBalls();
         respawnPaddles();
@@ -168,12 +168,24 @@ void Application::render() {
     SDL_SetRenderDrawColor(mRenderer, 0, 0, 0, 255);
     SDL_RenderClear(mRenderer);
 
+    renderGoal();
     renderWalls();
     renderBricks();
     renderBalls();
     renderPaddles();
 
     SDL_RenderPresent(mRenderer);
+}
+
+void Application::renderGoal() {
+    auto view = mRegistry.view<Component::Tag, Component::Transform>();
+    view.each([this](entt::entity, const Component::Tag &tag, const Component::Transform &transform) {
+        if (tag.name == "Goal") {
+            SDL_Rect rect{static_cast<int>(transform.position.x), static_cast<int>(transform.position.y), static_cast<int>(transform.scale.x), static_cast<int>(transform.scale.y)};
+            SDL_SetRenderDrawColor(mRenderer, 0, 0, 0, 255);
+            SDL_RenderFillRect(mRenderer, &rect);
+        }
+    });
 }
 
 void Application::renderWalls() {
@@ -224,6 +236,19 @@ void Application::renderPaddles() {
     });
 }
 
+void Application::respawnGoal() {
+    auto view = mRegistry.view<Component::Tag>();
+    view.each([this](entt::entity entity, const Component::Tag &tag) {
+        if (tag.name == "Goal") {
+            mRegistry.destroy(entity);
+        }
+    });
+
+    entt::entity entity2 = mRegistry.create();
+    mRegistry.emplace<Component::Tag>(entity2, "Goal");
+    mRegistry.emplace<Component::Transform>(entity2, glm::vec2(0.0f, 600.0f), glm::vec2(0.0f, 0.0f), glm::vec2(800.0f, 20.0f));
+}
+
 void Application::respawnWalls() {
     auto view = mRegistry.view<Component::Tag>();
     view.each([this](entt::entity entity, const Component::Tag &tag) {
@@ -243,19 +268,6 @@ void Application::respawnWalls() {
     entt::entity entity4 = mRegistry.create();
     mRegistry.emplace<Component::Tag>(entity4, "Wall");
     mRegistry.emplace<Component::Transform>(entity4, glm::vec2(800.0f, 0.0f), glm::vec2(0.0f, 0.0f), glm::vec2(20.0f, 600.0f));
-}
-
-void Application::respawnGoal() {
-    auto view = mRegistry.view<Component::Tag>();
-    view.each([this](entt::entity entity, const Component::Tag &tag) {
-        if (tag.name == "Goal") {
-            mRegistry.destroy(entity);
-        }
-    });
-
-    entt::entity entity2 = mRegistry.create();
-    mRegistry.emplace<Component::Tag>(entity2, "Goal");
-    mRegistry.emplace<Component::Transform>(entity2, glm::vec2(0.0f, 600.0f), glm::vec2(0.0f, 0.0f), glm::vec2(800.0f, 20.0f));
 }
 
 void Application::respawnBricks() {

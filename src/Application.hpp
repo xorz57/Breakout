@@ -27,13 +27,14 @@ private:
     void update([[maybe_unused]] float deltaTime);
     void render();
 
+    void renderGoal();
     void renderWalls();
     void renderBricks();
     void renderBalls();
     void renderPaddles();
 
-    void respawnWalls();
     void respawnGoal();
+    void respawnWalls();
     void respawnBricks();
     void respawnBalls();
     void respawnPaddles();
