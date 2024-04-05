@@ -15,11 +15,6 @@ void Application::run() {
         std::exit(EXIT_FAILURE);
     }
 
-    // if (SDL_ShowCursor(SDL_DISABLE) < 0) {
-    //     SDL_Log("Failed to disable cursor: %s", SDL_GetError());
-    //     std::exit(EXIT_FAILURE);
-    // }
-
     mWindow = SDL_CreateWindow("Breakout", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 800, 600, SDL_WINDOW_SHOWN);
     if (!mWindow) {
         SDL_Log("Failed to create window: %s", SDL_GetError());
