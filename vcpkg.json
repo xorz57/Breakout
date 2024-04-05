@@ -1,0 +1,18 @@
+{
+    "name": "breakout",
+    "version-string": "0.1.0",
+    "dependencies": [
+        "entt",
+        "glm",
+        {
+            "name": "imgui",
+            "features": [
+                "docking-experimental",
+                "sdl2-binding"
+            ]
+        },
+        "sdl2",
+        "sdl2-mixer",
+        "sdl2-ttf"
+    ]
+}
