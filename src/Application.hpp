@@ -33,6 +33,7 @@ private:
     void renderPaddles();
 
     void respawnWalls();
+    void respawnGoal();
     void respawnBricks();
     void respawnBalls();
     void respawnPaddles();

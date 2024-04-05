@@ -3,6 +3,7 @@
 #include <glm/glm.hpp>
 
 #include <cstdint>
+#include <string>
 
 namespace Component {
     struct Movement {
@@ -19,9 +20,7 @@ namespace Component {
         glm::vec2 scale;
     };
 
-    struct Wall {};
-    struct Brick {};
-    struct Ball {};
-    struct Paddle {};
-    struct Goal {};
+    struct Tag {
+        std::string name;
+    };
 }// namespace Component
