@@ -37,7 +37,7 @@ void Application::run() {
     respawnBalls();
     respawnPaddles();
 
-    const float fixedDeltaTime = 1.0f / 128.0f;
+    const float fixedDeltaTime = 1.0f / 240.0f;
     float accumulator = 0.0f;
     std::uint64_t lastFrameTime = SDL_GetTicks64();
 
