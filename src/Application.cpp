@@ -209,7 +209,7 @@ void Application::renderBricks() {
             SDL_RenderFillRect(mRenderer, &rect);
 
             SDL_Rect outlineRect{static_cast<int>(transform.position.x), static_cast<int>(transform.position.y), static_cast<int>(transform.scale.x), static_cast<int>(transform.scale.y)};
-            SDL_SetRenderDrawColor(mRenderer, 0, 0, 0, 255);
+            SDL_SetRenderDrawColor(mRenderer, static_cast<std::uint8_t>(sprite.color[0]) * 0.8f, static_cast<std::uint8_t>(sprite.color[1]) * 0.8f, static_cast<std::uint8_t>(sprite.color[2]) * 0.8f, static_cast<std::uint8_t>(sprite.color[3]) * 0.8f);
             SDL_RenderDrawRect(mRenderer, &outlineRect);
         }
     });
