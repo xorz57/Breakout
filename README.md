@@ -2,6 +2,8 @@
 
 [![Build](https://github.com/xorz57/Breakout/actions/workflows/Build.yml/badge.svg)](https://github.com/xorz57/Breakout/actions/workflows/Build.yml)
 
+![image](https://github.com/xorz57/Breakout/assets/84932056/df1df41b-6305-4f0c-abdb-f1abe75d579f)
+
 ## Notice
 
 Please note that this project is currently not actively maintained, and the code may not meet the author's standards for quality or best practices. While the project was a valuable learning experience, the author acknowledges that there may be room for improvement in the codebase.
