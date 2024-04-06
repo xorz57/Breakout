@@ -2,7 +2,7 @@
 
 [![Build](https://github.com/xorz57/Breakout/actions/workflows/Build.yml/badge.svg)](https://github.com/xorz57/Breakout/actions/workflows/Build.yml)
 
-![image](https://github.com/xorz57/Breakout/assets/84932056/3a826456-68e5-424f-a6d6-728bbd7447f4)
+![image](https://github.com/xorz57/Breakout/assets/84932056/7ca4febc-2c5c-4773-820a-1ccc4f15df70)
 
 ## Notice
 
