@@ -216,23 +216,31 @@ void Application::renderBricks() {
 }
 
 void Application::renderBalls() {
-    auto view = mRegistry.view<Component::Tag, Component::Transform>();
-    view.each([this](entt::entity, const Component::Tag &tag, const Component::Transform &transform) {
+    auto view = mRegistry.view<Component::Tag, Component::Transform, Component::Sprite>();
+    view.each([this](entt::entity, const Component::Tag &tag, const Component::Transform &transform, const Component::Sprite &sprite) {
         if (tag.name == "Ball") {
             SDL_Rect rect{static_cast<int>(transform.position.x), static_cast<int>(transform.position.y), static_cast<int>(transform.scale.x), static_cast<int>(transform.scale.y)};
-            SDL_SetRenderDrawColor(mRenderer, 255, 255, 255, 255);
+            SDL_SetRenderDrawColor(mRenderer, static_cast<std::uint8_t>(sprite.color[0]), static_cast<std::uint8_t>(sprite.color[1]), static_cast<std::uint8_t>(sprite.color[2]), static_cast<std::uint8_t>(sprite.color[3]));
             SDL_RenderFillRect(mRenderer, &rect);
+
+            SDL_Rect outlineRect{static_cast<int>(transform.position.x), static_cast<int>(transform.position.y), static_cast<int>(transform.scale.x), static_cast<int>(transform.scale.y)};
+            SDL_SetRenderDrawColor(mRenderer, static_cast<std::uint8_t>(sprite.color[0]) * 0.8f, static_cast<std::uint8_t>(sprite.color[1]) * 0.8f, static_cast<std::uint8_t>(sprite.color[2]) * 0.8f, static_cast<std::uint8_t>(sprite.color[3]));
+            SDL_RenderDrawRect(mRenderer, &outlineRect);
         }
     });
 }
 
 void Application::renderPaddles() {
-    auto view = mRegistry.view<Component::Tag, Component::Transform>();
-    view.each([this](entt::entity, const Component::Tag &tag, const Component::Transform &transform) {
+    auto view = mRegistry.view<Component::Tag, Component::Transform, Component::Sprite>();
+    view.each([this](entt::entity, const Component::Tag &tag, const Component::Transform &transform, const Component::Sprite &sprite) {
         if (tag.name == "Paddle") {
             SDL_Rect rect{static_cast<int>(transform.position.x), static_cast<int>(transform.position.y), static_cast<int>(transform.scale.x), static_cast<int>(transform.scale.y)};
-            SDL_SetRenderDrawColor(mRenderer, 255, 255, 255, 255);
+            SDL_SetRenderDrawColor(mRenderer, static_cast<std::uint8_t>(sprite.color[0]), static_cast<std::uint8_t>(sprite.color[1]), static_cast<std::uint8_t>(sprite.color[2]), static_cast<std::uint8_t>(sprite.color[3]));
             SDL_RenderFillRect(mRenderer, &rect);
+
+            SDL_Rect outlineRect{static_cast<int>(transform.position.x), static_cast<int>(transform.position.y), static_cast<int>(transform.scale.x), static_cast<int>(transform.scale.y)};
+            SDL_SetRenderDrawColor(mRenderer, static_cast<std::uint8_t>(sprite.color[0]) * 0.8f, static_cast<std::uint8_t>(sprite.color[1]) * 0.8f, static_cast<std::uint8_t>(sprite.color[2]) * 0.8f, static_cast<std::uint8_t>(sprite.color[3]));
+            SDL_RenderDrawRect(mRenderer, &outlineRect);
         }
     });
 }
@@ -314,6 +322,7 @@ void Application::respawnBalls() {
     entt::entity entity = mRegistry.create();
     mRegistry.emplace<Component::Tag>(entity, "Ball");
     mRegistry.emplace<Component::Transform>(entity, 0.5f * glm::vec2(800.0f - 20.0f, 600.0f - 20.0f), glm::vec2(0.0f, 0.0f), glm::vec2(20.0f, 20.0f));
+    mRegistry.emplace<Component::Sprite>(entity, glm::vec4(255.0f, 255.0f, 255.0f, 255.0f));
     mRegistry.emplace<Component::Movement>(entity, glm::vec2(200.0f, 200.0f));
 }
 
@@ -328,6 +337,7 @@ void Application::respawnPaddles() {
     entt::entity entity = mRegistry.create();
     mRegistry.emplace<Component::Tag>(entity, "Paddle");
     mRegistry.emplace<Component::Transform>(entity, glm::vec2(0.5f * (800.0f - 80.0f), 600.0f - 20.0f), glm::vec2(0.0f, 0.0f), glm::vec2(80.0f, 20.0f));
+    mRegistry.emplace<Component::Sprite>(entity, glm::vec4(255.0f, 255.0f, 255.0f, 255.0f));
     mRegistry.emplace<Component::Movement>(entity, glm::vec2(400.0f, 0.0f));
 }
 
