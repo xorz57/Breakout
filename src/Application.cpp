@@ -6,6 +6,7 @@ void Application::run() {
     if (SDL_SetHint(SDL_HINT_JOYSTICK_HIDAPI_PS4_RUMBLE, "1") == SDL_FALSE) {
         SDL_Log("Failed to set hint: %s", SDL_GetError());
     }
+
     if (SDL_SetHint(SDL_HINT_JOYSTICK_HIDAPI_PS5_RUMBLE, "1") == SDL_FALSE) {
         SDL_Log("Failed to set hint: %s", SDL_GetError());
     }
