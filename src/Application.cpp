@@ -467,7 +467,7 @@ void Application::checkCollisions() {
                             break;
                         case Bottom:
                             rumbleController(0xDEAD, 0xBEEF, 100);
-                            ballTransform.position.y = paddleTransform.position.y + paddleTransform.scale.y + ballTransform.scale.y;
+                            ballTransform.position.y = paddleTransform.position.y + paddleTransform.scale.y;
                             ballMovement.velocity.y *= -1.0f;
                             break;
                         case Left:
@@ -477,7 +477,7 @@ void Application::checkCollisions() {
                             break;
                         case Right:
                             rumbleController(0xDEAD, 0xBEEF, 100);
-                            ballTransform.position.x = paddleTransform.position.x + paddleTransform.scale.x + ballTransform.scale.x;
+                            ballTransform.position.x = paddleTransform.position.x + paddleTransform.scale.x;
                             ballMovement.velocity.x *= -1.0f;
                             break;
                         default:
