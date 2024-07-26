@@ -461,23 +461,13 @@ void Application::checkCollisions() {
                     switch (checkAABBCollision(ballTransform, paddleTransform)) {
                         using enum CollisionLocation;
                         case Top:
-                            rumbleController(0xDEAD, 0xBEEF, 100);
-                            ballTransform.position.y = paddleTransform.position.y - ballTransform.scale.y;
-                            ballMovement.velocity.y *= -1.0f;
-                            break;
                         case Bottom:
                             rumbleController(0xDEAD, 0xBEEF, 100);
-                            ballTransform.position.y = paddleTransform.position.y + paddleTransform.scale.y;
                             ballMovement.velocity.y *= -1.0f;
                             break;
                         case Left:
-                            rumbleController(0xDEAD, 0xBEEF, 100);
-                            ballTransform.position.x = paddleTransform.position.x - ballTransform.scale.x;
-                            ballMovement.velocity.x *= -1.0f;
-                            break;
                         case Right:
                             rumbleController(0xDEAD, 0xBEEF, 100);
-                            ballTransform.position.x = paddleTransform.position.x + paddleTransform.scale.x;
                             ballMovement.velocity.x *= -1.0f;
                             break;
                         default:
