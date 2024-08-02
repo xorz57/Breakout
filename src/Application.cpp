@@ -321,7 +321,7 @@ void Application::respawnBalls() {
 
     entt::entity entity = mRegistry.create();
     mRegistry.emplace<Component::Tag>(entity, "Ball");
-    mRegistry.emplace<Component::Transform>(entity, 0.5f * glm::vec2(800.0f - 20.0f, 600.0f - 20.0f), glm::vec2(0.0f, 0.0f), glm::vec2(20.0f, 20.0f));
+    mRegistry.emplace<Component::Transform>(entity, 0.5f * glm::vec2(800.0f - 10.0f, 600.0f - 10.0f), glm::vec2(0.0f, 0.0f), glm::vec2(10.0f, 10.0f));
     mRegistry.emplace<Component::Sprite>(entity, glm::vec4(255.0f, 255.0f, 255.0f, 255.0f));
     mRegistry.emplace<Component::Movement>(entity, glm::vec2(200.0f, 200.0f));
 }
